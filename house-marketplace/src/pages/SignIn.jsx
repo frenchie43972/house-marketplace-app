@@ -4,6 +4,7 @@ import {toast} from 'react-toastify';
 import { Link, useNavigate } from "react-router-dom";
 // Authentication from firebase to allow users to sign in
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import OAuth from "../components/OAuth";
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 
@@ -128,7 +129,7 @@ function SignIn() {
             </div>
           </form>
 
-          {/* TO-DO: Google OAuth */}
+          <OAuth />
 
           {/* Navigates to the sign-up page */}
           <Link to="/sign-up" className="registerLink">
