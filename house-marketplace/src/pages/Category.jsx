@@ -4,6 +4,7 @@ import { collection, getDocs, query, where, orderBy, limit, startAfter } from 'f
 import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
 import Spinner from '../components/Spinner';
+import ListingItem from "../components/ListingItem";
 
 function Category() {
   const [listings, setListings] = useState(null);
@@ -46,13 +47,13 @@ function Category() {
     };
 
     fetchListings();
-  }, []);
+  }, [params.categoryName]);
 
   return (
     <div className="category">
       <header>
         <p className="pageHeader">
-          {params.categoryName === 'rent' ? 'Places to rent' : 'Places to buy'}
+          {params.categoryName === 'rent' ? 'Places for Rent' : 'Places for Sale'}
         </p>
       </header>
       {loading ? (
@@ -62,7 +63,10 @@ function Category() {
             <main>
               <ul className="categoryListings">
                 {listings.map((listing) => (
-                  <h3>{listing.data.name}</h3>
+                  <ListingItem
+                    listing={listing.data}
+                    id={listing.id}
+                    key={listing.id} />
                 ))}
               </ul>
             </main>
